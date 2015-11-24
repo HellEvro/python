@@ -12,22 +12,22 @@ pip install stampery
 
 ```python
 import stampery
-stampery = Stampery('830fa1bf-bee7-4412-c1d3-31dddba2213d')
+s = stampery.Client('830fa1bf-bee7-4412-c1d3-31dddba2213d')
 ```
 
 ### Arbitrary object stamping
 ```python
-stampery.stamp({'meta': 'data'})
+s.stamp({'meta': 'data'})
 ```
 ### File stamping
 ```python
 file = open('/Users/user/Desktop/Artboard 2.png', 'rb')
 
-stampery.stamp({'meta': 'data'}, file)
+s.stamp({'meta': 'data'}, file)
 ```
 ### Getting a stamp
 ```python
-stampery.get(hash)
+s.get(hash)
 ```
 
 You can get your API key [signing up](https://stampery.com/signup) and going to [your account](https://stampery.com/account) -> Apps.
