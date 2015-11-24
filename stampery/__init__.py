@@ -3,7 +3,7 @@ import base64
 import hashlib
 import requests
 
-class Stampery:
+class Client:
     def __init__(self, apiSecret, beta=False):
         self.apiSecret = apiSecret
 

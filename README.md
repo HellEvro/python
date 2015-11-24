@@ -10,7 +10,7 @@ pip install stampery
 ```
 
 ```python
-import Stampery
+import stampery
 stampery = Stampery('830fa1bf-bee7-4412-c1d3-31dddba2213d')
 ```
 
