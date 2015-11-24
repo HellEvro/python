@@ -1,5 +1,6 @@
 Stampery
 =======
+[![PyPI version](https://badge.fury.io/py/stampery.svg)](https://badge.fury.io/py/stampery)
 
 Notarize all your data using the blockchain. Generate immutable and valid globally proofs of existence, integrity and ownership of any piece of data.
 
