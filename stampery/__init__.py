@@ -35,7 +35,7 @@ class Client:
         return r.json()
 
     def __stampFile(self, data, file):
-        files = {'file': ('filsename', file), 'data': (None, json.dumps(data))}
+        files = {'file': ('filename', file), 'data': (None, json.dumps(data))}
         r = requests.post(self.endpoint + '/stamps/', files=files, data=data, headers=self.headers)
         return r.json()
 
