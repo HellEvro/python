@@ -1,4 +1,7 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 setup(
   name = 'stampery',
   packages = ['stampery'],
@@ -12,5 +15,6 @@ setup(
   classifiers = [],
   install_requires=[
     "requests",
+    "retrying"
   ],
 )

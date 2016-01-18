@@ -1,3 +1,6 @@
 .pypirc
 *.pyc
 **/*.pyc
+build/
+dist/
+stampery.egg-info/
