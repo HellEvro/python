@@ -1,1 +1,1 @@
-msgpack-rpc-python
+sha3==0.2.1
