@@ -1,6 +1,7 @@
 import md5
 import hashlib
 import sha3
+import msgpackrpc
 
 class Stampery:
     __apiEndpoints = {'prod' : ['api.stampery.com', 4000],
@@ -15,7 +16,14 @@ class Stampery:
         self.__amqpEndpoint = self.__amqpEndpoints[branch] or self.__amqpEndpoints['prod']
 
     def start(self):
-        print self.hash("hello bitcoin")
+        self.__apiLogin(self.__apiEndpoint)
 
     def hash(self, data):
         return hashlib.sha3_512(data).hexdigest().upper()
+
+    def __apiLogin(self, endpoint):
+        self.__apiClient = msgpackrpc.Client(msgpackrpc.Address(endpoint[0], endpoint[1]))
+        req = self.__apiClient.call_async('stampery.3.auth', self.__clientId, self.__clientSecret)
+        req.join()
+        self.__auth = req.result
+        print "logged %s  Auth %s" % (self.__clientId, self.__auth)
