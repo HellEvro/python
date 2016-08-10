@@ -4,30 +4,35 @@
 # Usage
 ```python
 
-from index import Stampery
+from stampery import Stampery
 
-stampery = Stampery('2d4cdee7-38b0-4a66-da87-c1ab05b43768', 'prod')
+client = Stampery('2d4cdee7-38b0-4a66-da87-c1ab05b43768', 'prod')
 
-def ready():
-    digest = stampery.hash("Hello, blockchain!")
-    stampery.stamp(digest)
+def on_ready():
+    digest = client.hash("Hello, blockchain!")
+    client.stamp(digest)
 
-def proof(hash, aProof):
-    print "\nReceived proof for \n%s \n\nProof\n%s" % (hash, aProof)
+def on_proof(hash, proof):
+    print "Received proof for"
+    print hash
+    print "Proof"
+    print proof
 
-def error(err):
-    print "\nWoot: %s" % err
+def on_error(err):
+    print "Woot: %s" % err
 
-stampery.on("error", error )
-stampery.on("proof", proof )
-stampery.on("ready", ready )
+client.on("error", on_error )
+client.on("proof", on_proof )
+client.on("ready", on_ready )
 
-stampery.start()
+client.start()
 
 
  ```
 ## Installation
-Coming soon
+```python
+pip install stampery
+```
 
 # Official implementations
 - [NodeJS](https://github.com/stampery/node)
