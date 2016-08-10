@@ -36,7 +36,7 @@ class Stampery():
             self.__event_handlers[event_type](*args)
 
     def stamp(self, hash):
-        print "\nStamping \n%s" % hash
+        print("\nStamping \n%s" % hash)
         try:
             self.__api_client.call('stamp', hash.upper())
         except Exception as e:
@@ -47,7 +47,7 @@ class Stampery():
         req = self.__api_client.call_async('stampery.3.auth', self.__client_id, self.__client_secret)
         req.join()
         self.__auth = req.result
-        print "logged %s  Auth %s" % (self.__client_id, self.__auth)
+        print("logged %s" % self.__client_id)
 
     def __amqp_login(self, endpoint):
         credentials = pika.PlainCredentials(endpoint[2],endpoint[3])
