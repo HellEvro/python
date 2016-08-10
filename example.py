@@ -2,18 +2,21 @@ from index import Stampery
 
 stampery = Stampery('2d4cdee7-38b0-4a66-da87-c1ab05b43768', 'prod')
 
-def ready():
+def on_ready():
     digest = stampery.hash("Hello, blockchain!")
     stampery.stamp(digest)
 
-def proof(hash, aProof):
-    print "\nReceived proof for \n%s \n\nProof\n%s" % (hash, aProof)
+def on_proof(hash, proof):
+    print "Received proof for"
+    print hash
+    print "Proof"
+    print proof
 
-def error(err):
-    print "\nWoot: %s" % err
+def on_error(err):
+    print "Woot: %s" % err
 
-stampery.on("error", error )
-stampery.on("proof", proof )
-stampery.on("ready", ready )
+stampery.on("error", on_error )
+stampery.on("proof", on_proof )
+stampery.on("ready", on_ready )
 
 stampery.start()
