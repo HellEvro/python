@@ -13,17 +13,17 @@ def on_ready():
     client.stamp(digest)
 
 def on_proof(hash, proof):
-    print "Received proof for"
-    print hash
-    print "Proof"
-    print proof
+    print("Received proof for")
+    print(hash)
+    print("Proof")
+    print(proof)
 
 def on_error(err):
-    print "Woot: %s" % err
+    print("Woot: %s" % err)
 
-client.on("error", on_error )
-client.on("proof", on_proof )
-client.on("ready", on_ready )
+client.on("error", on_error)
+client.on("proof", on_proof)
+client.on("ready", on_ready)
 
 client.start()
 
