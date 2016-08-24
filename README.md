@@ -6,7 +6,7 @@
 
 from stampery import Stampery
 
-client = Stampery('2d4cdee7-38b0-4a66-da87-c1ab05b43768', 'prod')
+client = Stampery('2d4cdee7-38b0-4a66-da87-c1ab05b43768')
 
 def on_ready():
     digest = client.hash("Hello, blockchain!")
