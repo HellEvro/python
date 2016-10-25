@@ -4,8 +4,10 @@ import sha3
 import msgpack
 import msgpackrpc
 import pika
+import pkg_resources
 
 class Stampery():
+    __version = pkg_resources.require("stampery")[0].version
     __event_handlers = {}
     __api_end_points = {'prod' : ['api.stampery.com', 4000],
                      'beta' : ['api-beta.stampery.com', 4000]}
@@ -44,7 +46,7 @@ class Stampery():
 
     def __api_login(self, endpoint):
         self.__api_client = msgpackrpc.Client(msgpackrpc.Address(endpoint[0], endpoint[1]), unpack_encoding='utf-8')
-        req = self.__api_client.call_async('stampery.3.auth', self.__client_id, self.__client_secret)
+        req = self.__api_client.call_async('stampery.3.auth', self.__client_id, self.__client_secret, "python-" + self.__version)
         req.join()
         self.__auth = req.result
         print("logged %s" % self.__client_id)
