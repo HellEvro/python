@@ -1,5 +1,6 @@
 from stampery import Stampery
 
+# Sign up and get your secret token at https://api-dashboard.stampery.com
 client = Stampery('user-secret')
 
 def on_ready():
