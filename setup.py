@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name='stampery',
 
-    version='0.1.0',
+    version='0.1.1',
 
     description='Stampery API for Python',
     long_description='Stampery API wrapper for Python. Notarize all your data using the blockchain!',
