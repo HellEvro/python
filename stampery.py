@@ -22,7 +22,8 @@ class Stampery():
 
     def start(self):
         self.__api_login(self.__api_end_point)
-        self.__amqp_login(self.__amqp_end_point)
+        if self.__auth:
+            self.__amqp_login(self.__amqp_end_point)
 
     def hash(self, data):
         return hashlib.sha3_512(data).hexdigest().upper()
@@ -49,7 +50,10 @@ class Stampery():
         req = self.__api_client.call_async('stampery.3.auth', self.__client_id, self.__client_secret, "python-" + self.__version)
         req.join()
         self.__auth = req.result
-        print("logged %s" % self.__client_id)
+        if self.__auth is None:
+            self.__emit("error", "Couldn't authenticate")
+        else:
+            print("logged %s" % self.__client_id)
 
     def __amqp_login(self, endpoint):
         credentials = pika.PlainCredentials(endpoint[2],endpoint[3])
