@@ -66,7 +66,7 @@ class Stampery():
             hash = method.routing_key
             proof = msgpack.unpackb(body)
             ch.basic_ack(delivery_tag = method.delivery_tag)
-            self.__emit("proof", hash, proof)
+            self.__emit("proof", hash, self.__process_proof(proof))
 
         channel = amqp_conn.channel()
         channel.basic_consume(callback, queue = self.__client_id + '-clnt')
@@ -76,3 +76,16 @@ class Stampery():
         except KeyboardInterrupt:
             channel.stop_consuming()
             print("\nClosing the client")
+
+
+    def __process_proof(self, raw_proof):
+        proof = {
+            'version': raw_proof[0],
+            'siblings': raw_proof[1],
+            'root': raw_proof[2],
+            'anchor': {
+                'chain': raw_proof[3][0],
+                'tx': raw_proof[3][1]
+            }
+        }
+        return proof
