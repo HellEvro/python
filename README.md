@@ -10,14 +10,16 @@ from stampery import Stampery
 client = Stampery('user-secret')
 
 def on_ready():
-    digest = client.hash("Hello, blockchain!")
+    digest = client.hash("Hello, blockchain!" + str(random.random()))
     client.stamp(digest)
 
 def on_proof(hash, proof):
-    print("Received proof for")
-    print(hash)
-    print("Proof")
-    print(proof)
+    print("Received proof for {}\n".format(hash))
+    print("Proof\nVersion: {}\nSiblings: {}\nRoot: {}".format(
+        proof['version'], proof['siblings'], proof['root']))
+    print("Anchor:\n  Chain: {}\n  Tx: {}\n".format(
+        proof['anchor']['chain'], proof['anchor']['tx']))
+    print "Prove validity {}\n".format(client.prove(hash, proof))
 
 def on_error(err):
     print("Woot: %s" % err)
