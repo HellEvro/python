@@ -1,4 +1,3 @@
-import md5
 import hashlib
 import sha3
 import msgpack
@@ -18,7 +17,7 @@ class Stampery():
 
     def __init__(self, secret, branch='prod'):
         self.__client_secret = secret
-        self.__client_id = md5.new(secret).hexdigest()[0:15]
+        self.__client_id = hashlib.md5(secret.encode()).hexdigest()[0:15]
         self.__api_end_point = self.__api_end_points[
             branch] or self.__api_end_points['prod']
         self.__amqp_end_point = self.__amqp_end_points[
