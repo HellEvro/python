@@ -16,7 +16,7 @@ def on_proof(hash, proof):
         proof['version'], proof['siblings'], proof['root']))
     print("Anchor:\n  Chain: {}\n  Tx: {}\n".format(
         proof['anchor']['chain'], proof['anchor']['tx']))
-    print "Prove validity {}\n".format(client.prove(hash, proof))
+    print ("Prove validity {}\n".format(client.prove(hash, proof)))
 
 
 def on_error(err):
